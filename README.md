@@ -20,3 +20,21 @@ This is the loop that serves the incoming requests.
 Below picture shows the output at "http://localhost:8888" in the browser:
 ![p2](https://user-images.githubusercontent.com/20777854/40560814-c76a1e1a-6078-11e8-821c-a2344e2ff445.png)
 
+Below picture shows the classes (and some important portion from each) inside the api package:
+![p2](https://user-images.githubusercontent.com/20777854/40561564-506c79cc-607b-11e8-9930-67782f491376.png)
+
+### AbstractResponse.java
+This is an abstract class to provide dynamic responses through the Mappings.
+
+### Mapping.java
+This class has two constructors to set url mappings. Already demonstrated above in the first image in the blue and red box.
+
+### Request.java
+The parse() method in this class extracts out all the information and attribute out of request , which helps in creating dynamic web pages.
+
+### Response.java
+The constructor for this takes a plain String as input and attaches the http header to it thus making it browser readable.
+
+### Server.java
+This class is baically the first point to use any of the above classes.
+
