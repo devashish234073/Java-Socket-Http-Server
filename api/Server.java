@@ -24,37 +24,10 @@ public final class Server{
         InputStream is=client.getInputStream();
         int c;
         String raw = "";
-        String last4="";
-        for(c=is.read();c!=-1;c=is.read()){
+        do {
+            c = is.read();
             raw+=(char)c;
-            last4+=(char)c;
-            if(last4.length()>4){
-                last4=last4.substring(1);
-            }
-            if(last4.equals("\r\n\r\n")){
-                int indx=raw.toLowerCase().indexOf("content-length:");
-                if(indx>-1){
-                    String tmp=raw.substring(indx+15);
-                    int endIndx=tmp.indexOf("\r\n");
-                    if(endIndx>-1){
-                        try{
-                            int len = Integer.parseInt(tmp.substring(0,endIndx).trim());
-                            while(len>0){
-                                raw+=(char)is.read();
-                                len--;
-                            }
-                            break;
-                        } catch(NumberFormatException nfe){
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    break;
-                }
-            }
-        }
+        } while(is.available()>0);
         Request request = new Request(raw);
         return request;
     }
