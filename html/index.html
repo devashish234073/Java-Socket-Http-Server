@@ -1,0 +1,47 @@
+<html>
+<head>
+    <style>
+        .red{
+            background-color: red;
+            color: white;
+        }
+        .green{
+            background-color: green;
+            color: white;
+        }
+        .blue{
+            background-color: blue;
+            color: white;
+        }
+        input[type='submit'],input[type='button'],input[type='text'] {
+            width: 100px;
+            height: 25px;
+            font-size:11px;
+        }
+        input[type='submit'],input[type='button'] {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<form method="" action="SAVE">
+    <table>
+        <tr><td>Name</td><td><input type="text" name="name"></td></tr>
+        <tr><td>Roll</td><td><input type="text" name="roll"></td></tr>
+        <tr><td><input type="button" class="blue" value="Save with GET" onclick="saveWithGET()"></td><td><input type="button" class="green" value="Save with POST" onclick="saveWithPOST()"></td></tr>
+    </table>
+</form>
+<script>
+    function saveWithGET() {
+        var form = document.querySelector("form");
+        form.setAttribute("method","GET");
+        form.submit();
+    }
+    function saveWithPOST() {
+        var form = document.querySelector("form");
+        form.setAttribute("method","POST");
+        form.submit();
+    }
+</script>
+</body>
+</html>
