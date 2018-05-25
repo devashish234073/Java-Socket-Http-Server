@@ -31,9 +31,9 @@ public class Mappings{
                         res+=(char)c;
                     }
                 } catch (FileNotFoundException fnfe){
-
+                    return new Response("<html><body>Unable to find resource ["+url+"]</body></html>");
                 } catch (IOException ioe){
-
+                    return new Response("<html><body>Unable to read resource ["+url+"]</body></html>");
                 }
                 res=replaceRequestAttribute(res,req);
                 Response resp = new Response(res);
