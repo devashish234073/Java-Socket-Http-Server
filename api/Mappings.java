@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Mappings{
     HashMap<String, AbstractResponse> urlMappings;
@@ -43,17 +44,11 @@ public class Mappings{
     }
 
     private String replaceRequestAttribute(String res, Request req){
-        res=res.replace("${}","");
-        int indx=res.indexOf("${");
-        while(indx>-1){
-            int endIndx=indexOfAfter(res,"}", indx);
-            if(endIndx>-1){
-                String var=res.substring(indx+2,endIndx);
-                res=res.replace("${"+var+"}", req.getAttribute(var));
-            } else {
-                break;
-            }
-            indx=res.indexOf("${");
+        Iterator itr = req.getAttributeIterator();
+        while(itr.hasNext()) {
+            String key = (String) itr.next();
+            String val = req.getAttribute(key);
+            res = res.replace("${"+key+"}",val);
         }
         return res;
     }
