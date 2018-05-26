@@ -1,6 +1,7 @@
 package api;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public final class Request {
 
@@ -38,6 +39,10 @@ public final class Request {
                 url = firstLineSplit[1];
             }
         }
+    }
+
+    public Iterator getAttributeIterator() {
+        return attributes.keySet().iterator();
     }
 
     private void setAttributes(String rawAttributes) {
